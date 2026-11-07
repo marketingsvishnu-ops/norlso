@@ -1,0 +1,495 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OMEGA DIMENSION | 4D Fitness</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --gold:#f7c75b;
+ --orange:#ff7a32;
+ --black:#080909;
+ --panel:#141615;
+ --muted:#9a9e98;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ background:var(--black);color:#fff;
+ font-family:Inter,sans-serif;overflow-x:hidden;
+}
+body:before{
+ content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+ background-image:linear-gradient(#f7c75b08 1px,transparent 1px),
+ linear-gradient(90deg,#f7c75b08 1px,transparent 1px);
+ background-size:60px 60px;
+}
+a{text-decoration:none;color:inherit}
+button{font:inherit;cursor:pointer}
+.nav{
+ height:78px;position:fixed;top:0;width:100%;z-index:100;
+ display:flex;align-items:center;justify-content:space-between;
+ padding:0 7%;background:#080909e8;backdrop-filter:blur(18px);
+ border-bottom:1px solid #f7c75b25;
+}
+.logo{font:900 21px Orbitron,sans-serif;letter-spacing:2px}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:27px;font-size:10px;font-weight:700;letter-spacing:1px}
+.nav-links a{color:#b6b9b2;transition:.3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{
+ background:var(--gold);color:#090909;padding:13px 20px;
+ font-size:10px;font-weight:900;letter-spacing:1px;
+}
+.menu{display:none;background:none;border:0;color:white;font-size:25px}
+.hero{
+ min-height:800px;padding:145px 7% 95px;
+ display:grid;grid-template-columns:1fr 1fr;align-items:center;
+ gap:25px;position:relative;overflow:hidden;
+}
+.hero:after{
+ content:"";position:absolute;width:550px;height:550px;border-radius:50%;
+ background:var(--orange);filter:blur(190px);opacity:.12;right:-180px;top:100px;
+}
+.hero-copy{position:relative;z-index:3}
+.kicker{
+ color:var(--gold);font:600 10px Orbitron,sans-serif;
+ letter-spacing:3px;display:flex;align-items:center;gap:10px;
+}
+.kicker:before{content:"";width:30px;height:1px;background:var(--gold)}
+.hero h1{
+ font:900 clamp(55px,8vw,105px)/.98 Orbitron,sans-serif;
+ letter-spacing:-5px;margin:27px 0;
+}
+.hero h1 span{
+ display:block;color:transparent;
+ -webkit-text-stroke:1.5px var(--gold);
+}
+.hero-copy p{max-width:460px;color:var(--muted);font-size:14px;line-height:1.9}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:35px}
+.btn{
+ display:inline-block;padding:16px 24px;font-size:10px;
+ font-weight:900;letter-spacing:1.3px;text-transform:uppercase;
+ transition:.3s;border:1px solid transparent;
+}
+.btn-gold{background:var(--gold);color:#080909;box-shadow:0 0 25px #f7c75b35}
+.btn-outline{border-color:#f7c75b70;color:var(--gold)}
+.btn:hover{transform:translateY(-5px);box-shadow:0 0 30px #f7c75b45}
+.scene{
+ height:530px;position:relative;display:flex;
+ align-items:center;justify-content:center;perspective:1000px;
+}
+.tunnel{
+ position:absolute;width:430px;height:430px;border:2px solid #f7c75b90;
+ border-radius:50%;transform:rotateX(67deg);
+ box-shadow:0 0 25px #f7c75b40,inset 0 0 30px #f7c75b25;
+ animation:tunnel 12s linear infinite;
+}
+.tunnel.two{
+ width:340px;height:340px;border-color:var(--orange);
+ animation:tunnelReverse 9s linear infinite;
+}
+.tunnel.three{
+ width:510px;height:510px;border:1px dashed #f7c75b80;
+ animation:tunnel 20s linear infinite;
+}
+@keyframes tunnel{to{transform:rotateX(67deg) rotateZ(360deg)}}
+@keyframes tunnelReverse{to{transform:rotateX(67deg) rotateZ(-360deg)}}
+.cube-wrap{
+ width:160px;height:160px;position:relative;
+ transform-style:preserve-3d;
+ animation:float 4s ease-in-out infinite;
+}
+.cube{
+ position:absolute;inset:0;transform-style:preserve-3d;
+ animation:cubeRotate 12s linear infinite;
+}
+.face{
+ position:absolute;width:160px;height:160px;
+ border:2px solid var(--gold);
+ background:linear-gradient(135deg,#f7c75b38,#ff7a3212);
+ box-shadow:inset 0 0 25px #f7c75b30,0 0 15px #f7c75b25;
+}
+.front{transform:translateZ(80px)}
+.back{transform:rotateY(180deg) translateZ(80px)}
+.right{transform:rotateY(90deg) translateZ(80px)}
+.left{transform:rotateY(-90deg) translateZ(80px)}
+.top{transform:rotateX(90deg) translateZ(80px)}
+.bottom{transform:rotateX(-90deg) translateZ(80px)}
+@keyframes cubeRotate{
+ from{transform:rotateX(0) rotateY(0) rotateZ(0)}
+ to{transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg)}
+}
+@keyframes float{50%{translate:0 -20px}}
+.core-glow{
+ position:absolute;width:100px;height:100px;border-radius:50%;
+ background:radial-gradient(circle,#fff 0%,var(--gold) 20%,#ff7a32 45%,transparent 75%);
+ filter:blur(10px);z-index:2;animation:pulse 3s ease-in-out infinite;
+}
+@keyframes pulse{50%{transform:scale(1.4);opacity:.6}}
+.orbit{
+ position:absolute;width:12px;height:12px;border-radius:50%;
+ background:var(--gold);box-shadow:0 0 20px var(--gold);
+ animation:orbit 7s linear infinite;
+}
+@keyframes orbit{
+ from{transform:rotate(0) translateX(220px)}
+ to{transform:rotate(360deg) translateX(220px)}
+}
+.scene-label{
+ position:absolute;bottom:20px;right:0;
+ font:600 9px Orbitron,sans-serif;letter-spacing:3px;color:var(--gold);
+}
+.hero-index{
+ position:absolute;bottom:30px;left:7%;font:600 10px Orbitron,sans-serif;
+ color:#ffffff35;letter-spacing:3px;
+}
+.stats{
+ display:grid;grid-template-columns:repeat(4,1fr);
+ padding:32px 7%;background:#101210;
+ border-top:1px solid #ffffff15;border-bottom:1px solid #ffffff15;
+}
+.stat{text-align:center;border-right:1px solid #ffffff17}
+.stat:last-child{border:0}
+.stat strong{display:block;font:800 34px Orbitron,sans-serif;color:var(--gold)}
+.stat span{font-size:9px;letter-spacing:2px;color:var(--muted)}
+section.content{padding:105px 7%}
+.heading{
+ display:flex;justify-content:space-between;align-items:end;
+ gap:25px;margin-bottom:45px;
+}
+.heading h2{font:800 clamp(35px,5.5vw,65px)/1.05 Orbitron,sans-serif}
+.heading h2 span{color:var(--gold)}
+.heading p{max-width:320px;font-size:12px;line-height:1.8;color:var(--muted)}
+.program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.program{
+ min-height:280px;padding:25px;position:relative;overflow:hidden;
+ background:linear-gradient(145deg,#1b1e1b,#0c0e0d);
+ border:1px solid #ffffff17;transition:.35s;
+}
+.program:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 10px 35px #f7c75b12}
+.program .num{font:600 10px Orbitron,sans-serif;color:var(--gold)}
+.program .symbol{
+ position:absolute;right:20px;top:25px;
+ font:900 80px Orbitron,sans-serif;color:#f7c75b17;
+ transition:.4s;
+}
+.program:hover .symbol{color:#f7c75b50;transform:rotate(15deg) scale(1.15)}
+.program h3{position:absolute;bottom:65px;left:25px;font:700 19px Orbitron,sans-serif}
+.program p{position:absolute;bottom:27px;left:25px;color:var(--muted);font-size:11px}
+.about{
+ display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+ background:#101210;
+}
+.about-art{
+ height:430px;position:relative;display:flex;
+ align-items:center;justify-content:center;overflow:hidden;
+ background:radial-gradient(circle,#342718,#0b0d0b 68%);
+ border:1px solid #f7c75b30;
+}
+.about-art:before,.about-art:after{
+ content:"";position:absolute;width:270px;height:270px;
+ border:1px solid var(--gold);border-radius:50%;
+ box-shadow:0 0 35px #f7c75b40;
+ animation:tunnel 15s linear infinite;
+}
+.about-art:after{width:370px;height:370px;border-color:var(--orange);animation:tunnelReverse 18s linear infinite}
+.about-art strong{font:900 58px Orbitron,sans-serif;color:white;z-index:2;text-shadow:0 0 25px var(--gold)}
+.about-art small{position:absolute;bottom:20px;left:20px;color:var(--gold);font:9px Orbitron,sans-serif;letter-spacing:3px}
+.about-copy h2{font:800 clamp(38px,5vw,65px)/1.1 Orbitron,sans-serif;margin:20px 0}
+.about-copy h2 span{color:var(--gold)}
+.about-copy p{font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:16px}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin:25px 0}
+.features div{font-size:11px;color:#d8dbd4}
+.features b{color:var(--gold);margin-right:8px}
+.pricing{background:#101210}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.price-card{
+ padding:32px 26px;background:linear-gradient(145deg,#1c201c,#0c0e0d);
+ border:1px solid #ffffff18;
+}
+.price-card.featured{border-color:var(--gold);box-shadow:0 0 35px #f7c75b13;transform:translateY(-12px)}
+.plan{font:600 9px Orbitron,sans-serif;letter-spacing:2px;color:var(--gold)}
+.price-card h3{font:700 22px Orbitron,sans-serif;margin:20px 0}
+.amount{font:800 45px Orbitron,sans-serif}
+.amount small{font:400 11px Inter,sans-serif;color:var(--muted)}
+.price-card ul{list-style:none;margin:25px 0}
+.price-card li{font-size:11px;color:#aeb3aa;padding:12px 0;border-bottom:1px solid #ffffff13}
+.price-card li:before{content:"✦";color:var(--gold);margin-right:10px}
+.price-card .btn{width:100%;text-align:center}
+.bmi-area{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.bmi-area h2{font:800 clamp(42px,6vw,70px)/1.05 Orbitron,sans-serif}
+.bmi-area h2 span{color:var(--gold)}
+.bmi-area p{font-size:13px;color:var(--muted);line-height:1.9;margin-top:20px}
+.calculator{padding:32px;background:#151915;border:1px solid #f7c75b45}
+.calculator h3{font:700 20px Orbitron,sans-serif;margin-bottom:20px}
+.calculator label{display:block;font-size:10px;color:var(--muted);margin:16px 0 8px;letter-spacing:1px}
+.calculator input{
+ width:100%;padding:14px;background:#080b09;color:white;
+ border:1px solid #ffffff25;outline:none;
+}
+.calculator input:focus{border-color:var(--gold)}
+.calculator button{width:100%;margin-top:20px}
+#result{min-height:24px;margin-top:18px;color:var(--gold);font-size:12px;font-weight:700}
+.cta{
+ padding:100px 7%;text-align:center;
+ background:radial-gradient(ellipse at center,#352714,#090b09 68%);
+ border-top:1px solid #f7c75b25;border-bottom:1px solid #f7c75b25;
+}
+.cta h2{font:900 clamp(42px,8vw,88px)/1.05 Orbitron,sans-serif}
+.cta h2 span{color:var(--gold)}
+.cta p{max-width:450px;margin:20px auto 30px;color:var(--muted);font-size:13px;line-height:1.8}
+footer{padding:45px 7% 22px;background:#050605}
+.footer-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.footer-top p{max-width:300px;color:#777d74;font-size:11px;line-height:1.8;margin-top:15px}
+.footer-links{display:flex;gap:25px;flex-wrap:wrap;font-size:10px;color:#a2a79d}
+.footer-links a:hover{color:var(--gold)}
+.copyright{border-top:1px solid #ffffff15;margin-top:35px;padding-top:20px;color:#62675f;font-size:9px;letter-spacing:1px}
+.reveal{opacity:0;transform:translateY(25px);transition:.8s}
+.reveal.show{opacity:1;transform:translateY(0)}
+@media(max-width:850px){
+ .nav{padding:0 6%}
+ .menu{display:block}
+ .nav-cta{display:none}
+ .nav-links{
+  display:none;position:absolute;top:78px;left:0;width:100%;
+  padding:25px 7%;background:#080909;flex-direction:column;gap:22px;
+ }
+ .nav-links.open{display:flex}
+ .hero{grid-template-columns:1fr;padding:130px 6% 75px}
+ .scene{height:430px}
+ .tunnel{width:340px;height:340px}
+ .tunnel.two{width:270px;height:270px}
+ .tunnel.three{width:400px;height:400px}
+ .stats{grid-template-columns:1fr 1fr;gap:25px}
+ .stat{border:0}
+ section.content{padding:75px 6%}
+ .heading{display:block}
+ .heading p{margin-top:17px}
+ .program-grid,.price-grid{grid-template-columns:1fr}
+ .about,.bmi-area{grid-template-columns:1fr;gap:35px}
+ .price-card.featured{transform:none}
+}
+@media(max-width:450px){
+ .hero h1{font-size:53px;letter-spacing:-3px}
+ .scene{height:350px}
+ .tunnel{width:270px;height:270px}
+ .tunnel.two{width:210px;height:210px}
+ .tunnel.three{width:320px;height:320px}
+ .cube-wrap{transform:scale(.75)}
+ .features{grid-template-columns:1fr}
+ .stat strong{font-size:27px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+ <a class="logo" href="#">OMEGA<span>4D.</span></a>
+ <button class="menu" id="menu" aria-label="Toggle navigation">☰</button>
+ <nav class="nav-links" id="links">
+  <a href="#programs">Training</a>
+  <a href="#about">Experience</a>
+  <a href="#membership">Membership</a>
+  <a href="#bmi">Body scan</a>
+ </nav>
+ <a href="#membership" class="nav-cta">Unlock your power ↗</a>
+</header>
+
+<main>
+<section class="hero">
+ <div class="hero-copy">
+  <div class="kicker">WELCOME TO THE NEXT DIMENSION</div>
+  <h1>BEYOND <span>HUMAN.</span></h1>
+  <p>Enter a new universe of fitness. Experience immersive training, futuristic design and powerful coaching designed to transform the way you move.</p>
+  <div class="actions">
+   <a href="#membership" class="btn btn-gold">Enter Omega ↗</a>
+   <a href="#programs" class="btn btn-outline">Explore the zones</a>
+  </div>
+ </div>
+ <div class="scene">
+  <div class="tunnel three"></div>
+  <div class="tunnel"></div>
+  <div class="tunnel two"></div>
+  <div class="orbit"></div>
+  <div class="cube-wrap">
+   <div class="cube">
+    <div class="face front"></div>
+    <div class="face back"></div>
+    <div class="face right"></div>
+    <div class="face left"></div>
+    <div class="face top"></div>
+    <div class="face bottom"></div>
+   </div>
+   <div class="core-glow"></div>
+  </div>
+  <div class="scene-label">OMEGA ENERGY CORE / 04.0</div>
+ </div>
+ <div class="hero-index">OMEGA SYSTEM // DIMENSION 004</div>
+</section>
+
+<div class="stats">
+ <div class="stat"><strong>4D</strong><span>Immersive fitness</span></div>
+ <div class="stat"><strong>24/7</strong><span>Access options</span></div>
+ <div class="stat"><strong>40+</strong><span>Weekly sessions</span></div>
+ <div class="stat"><strong>∞</strong><span>Room to evolve</span></div>
+</div>
+
+<section class="content" id="programs">
+ <div class="heading reveal">
+  <h2>CHOOSE YOUR <span>UNIVERSE.</span></h2>
+  <p>Six specialist training zones. One mission: discover what your body is capable of.</p>
+ </div>
+ <div class="program-grid">
+  <article class="program reveal"><span class="num">ZONE / 01</span><span class="symbol">◈</span><h3>OMEGA STRENGTH</h3><p>Build muscle and unlock raw power.</p></article>
+  <article class="program reveal"><span class="num">ZONE / 02</span><span class="symbol">ϟ</span><h3>HYPER VELOCITY</h3><p>Speed, agility and explosive movement.</p></article>
+  <article class="program reveal"><span class="num">ZONE / 03</span><span class="symbol">◎</span><h3>CORE CONTROL</h3><p>Balance, stability and precision.</p></article>
+  <article class="program reveal"><span class="num">ZONE / 04</span><span class="symbol">✧</span><h3>ENDURANCE GRID</h3><p>Push your stamina to another level.</p></article>
+  <article class="program reveal"><span class="num">ZONE / 05</span><span class="symbol">⬡</span><h3>ELITE COACHING</h3><p>Personal training built around you.</p></article>
+  <article class="program reveal"><span class="num">ZONE / 06</span><span class="symbol">⟡</span><h3>RECOVERY CHAMBER</h3><p>Recover, reset and return stronger.</p></article>
+ </div>
+</section>
+
+<section class="content about" id="about">
+ <div class="about-art reveal">
+  <strong>Ω 4D</strong>
+  <small>PERFORMANCE WITHOUT LIMITS</small>
+ </div>
+ <div class="about-copy reveal">
+  <div class="kicker">THE OMEGA EXPERIENCE</div>
+  <h2>REDEFINE YOUR <span>LIMITS.</span></h2>
+  <p>OMEGA is a training environment built around innovation, consistency and human performance. Our mission is to make every workout feel like a step into something bigger.</p>
+  <p>Train with purpose, learn from expert coaches and become part of a community that moves forward together.</p>
+  <div class="features">
+   <div><b>✦</b> Next-gen equipment</div>
+   <div><b>✦</b> Personal coaching</div>
+   <div><b>✦</b> Performance plans</div>
+   <div><b>✦</b> Recovery facilities</div>
+  </div>
+  <a href="#membership" class="btn btn-gold">Explore membership ↗</a>
+ </div>
+</section>
+
+<section class="content pricing" id="membership">
+ <div class="heading reveal">
+  <h2>SELECT YOUR <span>POWER LEVEL.</span></h2>
+  <p>Choose the access level that matches your ambition and activate your next evolution.</p>
+ </div>
+ <div class="price-grid">
+  <article class="price-card reveal">
+   <div class="plan">LEVEL 01 / ENTRY</div>
+   <h3>ORIGIN</h3>
+   <div class="amount">$39<small> / month</small></div>
+   <ul><li>Gym floor access</li><li>Standard equipment</li><li>Fitness assessment</li><li>Member community</li></ul>
+   <a href="#contact" class="btn btn-outline">Choose Origin</a>
+  </article>
+  <article class="price-card featured reveal">
+   <div class="plan">LEVEL 02 / POPULAR</div>
+   <h3>EVOLUTION</h3>
+   <div class="amount">$69<small> / month</small></div>
+   <ul><li>Everything in Origin</li><li>Unlimited group classes</li><li>Monthly coach session</li><li>Recovery zone access</li></ul>
+   <a href="#contact" class="btn btn-gold">Choose Evolution</a>
+  </article>
+  <article class="price-card reveal">
+   <div class="plan">LEVEL 03 / ELITE</div>
+   <h3>INFINITY</h3>
+   <div class="amount">$99<small> / month</small></div>
+   <ul><li>Everything in Evolution</li><li>Personal training session</li><li>Custom performance plan</li><li>Priority class booking</li></ul>
+   <a href="#contact" class="btn btn-outline">Choose Infinity</a>
+  </article>
+ </div>
+</section>
+
+<section class="content bmi-area" id="bmi">
+ <div class="reveal">
+  <div class="kicker">PERSONAL PERFORMANCE DATA</div>
+  <h2>BODY <span>ANALYSIS.</span></h2>
+  <p>Calculate your estimated Body Mass Index. BMI is a general screening measure and does not account for muscle mass or individual health factors.</p>
+ </div>
+ <div class="calculator reveal">
+  <h3>// OMEGA BODY SCAN</h3>
+  <label for="height">HEIGHT / CM</label>
+  <input id="height" type="number" min="1" placeholder="Enter your height">
+  <label for="weight">WEIGHT / KG</label>
+  <input id="weight" type="number" min="1" placeholder="Enter your weight">
+  <button class="btn btn-gold" onclick="calculateBMI()">RUN BODY ANALYSIS ↗</button>
+  <div id="result" aria-live="polite"></div>
+ </div>
+</section>
+
+<section class="cta" id="contact">
+ <div class="kicker" style="justify-content:center">YOUR NEXT EVOLUTION STARTS NOW</div>
+ <h2>ACTIVATE <span>OMEGA.</span></h2>
+ <p>Stop training like yesterday. Step into a new dimension and build the strongest version of yourself.</p>
+ <a href="mailto:hello@omega4d.example" class="btn btn-gold">Connect with Omega ↗</a>
+</section>
+</main>
+
+<footer>
+ <div class="footer-top">
+  <div>
+   <a href="#" class="logo">OMEGA<span>4D.</span></a>
+   <p>Beyond ordinary fitness. A new dimension of strength, performance and possibility.</p>
+  </div>
+  <div class="footer-links">
+   <a href="#programs">Training</a>
+   <a href="#about">Experience</a>
+   <a href="#membership">Membership</a>
+   <a href="#contact">Contact</a>
+  </div>
+ </div>
+ <div class="copyright">© 2026 OMEGA DIMENSION FITNESS. ALL RIGHTS RESERVED.</div>
+</footer>
+
+<script>
+const menu=document.getElementById('menu');
+const links=document.getElementById('links');
+
+menu.addEventListener('click',()=>{
+ links.classList.toggle('open');
+ menu.textContent=links.classList.contains('open')?'✕':'☰';
+});
+
+links.querySelectorAll('a').forEach(link=>{
+ link.addEventListener('click',()=>{
+  links.classList.remove('open');
+  menu.textContent='☰';
+ });
+});
+
+function calculateBMI(){
+ const height=Number(document.getElementById('height').value);
+ const weight=Number(document.getElementById('weight').value);
+ const result=document.getElementById('result');
+
+ if(!height||!weight||height<=0||weight<=0){
+  result.textContent='SYSTEM ERROR: Enter valid height and weight.';
+  return;
+ }
+
+ const bmi=weight/((height/100)**2);
+ let category='Obesity range';
+
+ if(bmi<18.5)category='Underweight range';
+ else if(bmi<25)category='Healthy weight range';
+ else if(bmi<30)category='Overweight range';
+
+ result.textContent=`ANALYSIS COMPLETE: BMI ${bmi.toFixed(1)} — ${category}`;
+}
+
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   entry.target.classList.add('show');
+   observer.unobserve(entry.target);
+  }
+ });
+},{threshold:.12});
+
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
+```
